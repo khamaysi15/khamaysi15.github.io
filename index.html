@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohammad Khamaysi</title>
+<meta name="description" content="Mohammad Khamaysi, M.Sc. electrical engineering, Tel Aviv University. Two low-power digital interpolation-filter chips in TSMC 65 nm, MATLAB to GDSII.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="name" href="index.html">Mohammad Khamaysi</a>
+  <ul>
+    <li><a href="index.html" aria-current="page">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About me</a></li>
+    <li><a href="cv/Mohammad_Khamaysi_CV.pdf">CV</a></li>
+  </ul>
+</div></nav>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">M.Sc. Electrical Engineering · Tel Aviv University</p>
+      <h1>Low-power arithmetic for digital filters, carried from a MATLAB model to silicon.</h1>
+      <p class="lede">I design digital and mixed-signal chips. In 2026 I built two interpolation-filter ASICs in TSMC 65&nbsp;nm, one with loadable coefficients and one with every multiplier replaced by shift-add arithmetic, and took both from the golden model to the final GDS myself, with a bit-exact compare at every stage. Both were submitted for fabrication in September 2026.</p>
+      <p class="muted">Research interests: energy-efficient DSP hardware, multiplierless arithmetic, digital front ends for transmitters, algorithm-to-silicon co-design.</p>
+      <div class="btns">
+        <a class="btn fill" href="research.html">See the research</a>
+        <a class="btn line" href="thesis_khamaysi.pdf">Thesis (PDF)</a>
+        <a class="btn line" href="cv/Mohammad_Khamaysi_CV.pdf">CV (PDF)</a>
+      </div>
+    </div>
+    <div class="photo"><img src="img/portrait_bridge.jpg" alt="Mohammad Khamaysi"></div>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><div class="n">2</div><div class="l">chips taped out, TSMC 65 nm LP</div></div>
+    <div class="fact"><div class="n">960 MHz</div><div class="l">clock, seven run-time modes</div></div>
+    <div class="fact"><div class="n">−41 to −60 %</div><div class="l">core power with hardwired arithmetic</div></div>
+    <div class="fact"><div class="n">18 / 18</div><div class="l">post-layout runs bit-exact to the golden model</div></div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><h3>Research</h3><p>Two interpolation-filter chips, polyphase, cubic and spline, compared for power, area and EVM, from MATLAB to GDSII.</p><a href="research.html">Read more</a></div>
+    <div class="card"><h3>Work</h3><p>Course projects in mixed-signal and analog IC design: a 6-bit 2 GHz flash ADC and a fully differential OTA, both at transistor level in Virtuoso.</p><a href="work.html">See the projects</a></div>
+    <div class="card"><h3>About me</h3><p>Teaching assistant and tutor at Tel Aviv University; oud player who builds his own instruments.</p><a href="about.html">About me</a></div>
+  </div>
+</main>
+
+<footer><div class="wrap">
+  <span>Mohammad Khamaysi · Tel Aviv University</span>
+  <span><a href="mailto:khamaysi15@gmail.com">khamaysi15@gmail.com</a></span>
+</div></footer>
+
+</body>
+</html>

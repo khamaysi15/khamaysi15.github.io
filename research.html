@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research · Mohammad Khamaysi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="name" href="index.html">Mohammad Khamaysi</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html" aria-current="page">Research</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About me</a></li>
+    <li><a href="cv/Mohammad_Khamaysi_CV.pdf">CV</a></li>
+  </ul>
+</div></nav>
+
+<main class="wrap">
+<section>
+  <p class="eyebrow">Research · M.Sc. thesis</p>
+  <h1>Two interpolation-filter chips, MATLAB to GDSII</h1>
+  <p class="lede"><i>Low-Power Arithmetic for Configurable Multi-Rate Digital Interpolation Filters, from MATLAB to GDSII: Polyphase, Cubic and Spline Compared on Two TSMC 65&nbsp;nm Tapeouts.</i> Supervised by Dr.&nbsp;Nimrod Ginzberg, Tel Aviv University.</p>
+  <div class="btns"><a class="btn fill" href="thesis_khamaysi.pdf">Read the thesis (PDF)</a></div>
+
+    <div class="figs" style="margin-top:28px">
+    <figure class="wide"><img src="img/interpolation_idea.jpg" alt="A coarse picture becoming a fine one: interpolation adds samples between the ones you have"><figcaption><b>IDEA</b>Interpolation in one picture: more samples between the ones you have, and the same picture. In the transmitter the samples are a 60 MHz stream and the picture is the spectrum of a QAM-64 signal.</figcaption></figure>
+  </div>
+<div class="cols" style="margin-top:28px">
+    <div>
+      <h3>What the chips do</h3>
+      <p>A QAM-64 transmitter hands its samples to the converter at 60&nbsp;MHz, and the converter repeats the spectrum at every multiple of 60&nbsp;MHz. Interpolating digitally by 2, 3, 4 or 5 before the converter moves those images away and makes the analogue filter simple. The cost is the arithmetic of the interpolation filter, and that arithmetic is the subject of the work.</p>
+      <h3>Two chips</h3>
+      <p>Both carry three interpolators, a polyphase FIR, a cubic and a MinAJ2 Hermite spline, behind one control unit and one cleanup filter, with seven run-time modes: three word lengths and four interpolation factors, up to 960&nbsp;MHz. Chip&nbsp;1 loads every filter coefficient over a serial bus. Chip&nbsp;2 has every coefficient hardwired as shift-add arithmetic, so no multiplier remains in the polyphase and cleanup datapaths.</p>
+    </div>
+    <div>
+      <h3>Result</h3>
+      <p>The hardwired chip has a 40&nbsp;% smaller polyphase core, 41 to 60&nbsp;% lower core power at the same EVM, and is 20&nbsp;% smaller overall. The polyphase FIR is the best of the three methods on both chips. EVM is read on a Keysight 89600 vector signal analyser; power comes from Voltus on the sign-off database with the switching activity of the bit-exact simulation.</p>
+      <h3>Method</h3>
+      <p>One golden fixed-point model in MATLAB writes the expected output of every mode. Every representation of the design, RTL, gate netlist, pad-wrapped netlist and routed netlist with SDF, is simulated on the same stimulus and compared word for word. Sign-off: Calibre DRC, LVS and ERC; Conformal equivalence, RTL-to-gate and gate-to-gate; PrimeTime three-corner timing; Voltus IR drop; bond pads and dummy fill in Virtuoso.</p>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Core power at L&nbsp;=&nbsp;4, mW</th><th class="num">Chip 1, loadable</th><th class="num">Chip 2, hardwired</th><th class="num">Saving</th></tr></thead>
+    <tbody>
+      <tr><td>Polyphase FIR</td><td class="num">16.59</td><td class="num hl">9.76</td><td class="num">41 %</td></tr>
+      <tr><td>Cubic + cleanup</td><td class="num">30.73</td><td class="num">13.99</td><td class="num">54 %</td></tr>
+      <tr><td>Spline + cleanup</td><td class="num">30.88</td><td class="num">13.47</td><td class="num">56 %</td></tr>
+      <tr><td>Whole core area, µm²</td><td class="num">297 808</td><td class="num">236 793</td><td class="num">20 %</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">The flow</p>
+  <h2>From the golden model to the final GDS</h2>
+  <div class="figs">
+    <figure class="wide"><img src="figs/01_flow.png" alt="The design flow, twelve stages with what each produces and the gate that admits the next"><figcaption><b>FLOW</b>Every stage is admitted only when its output matches the golden model; the post-layout simulation is the acceptance test.</figcaption></figure>
+    <figure><img src="img/interpolators_zoom.jpg" alt="Linear, spline, cubic and Lagrange interpolation against the original signal, zoomed to a few samples"><figcaption><b>MODEL</b>A few samples of the model output: linear, spline, cubic and Lagrange against the original. The spline and the original are on top of each other.</figcaption></figure>
+    <figure><img src="img/spectrum_matlab.png" alt="Spectrum of the interpolated QAM-64 signal in MATLAB"><figcaption><b>MODEL</b>The spectrum of the interpolated signal in the model: the wanted band and the floor the arithmetic leaves.</figcaption></figure>
+    <figure><img src="figs/11_matlab_interpolators.png" alt="The three interpolators against the original signal in the MATLAB model"><figcaption><b>MODEL</b>The three interpolators against the original in the MATLAB model, before and after the cleanup filter.</figcaption></figure>
+    <figure><img src="figs/04_shift_add_tap.png" alt="One tap of chip 2 built from four shifts and three adders"><figcaption><b>TAP</b>One real tap of chip 2: 28920 = 2<sup>15</sup> − 2<sup>12</sup> + 2<sup>8</sup> − 2<sup>3</sup>, four shifts and three adders, no multiplier.</figcaption></figure>
+    <figure><img src="figs/02_chip1_block_diagram.png" alt="Block diagram of chip 1"><figcaption><b>CHIP 1</b>Three cores, control unit, cleanup filter; coefficients loaded over a serial bus.</figcaption></figure>
+    <figure><img src="figs/03_chip2_block_diagram.png" alt="Block diagram of chip 2"><figcaption><b>CHIP 2</b>The same topology with every coefficient a constant in the logic.</figcaption></figure>
+    <figure><img src="figs/05_chip1_routed.png" alt="Chip 1 routed in Innovus"><figcaption><b>P&amp;R</b>Chip 1 routed in Innovus.</figcaption></figure>
+    <figure><img src="figs/06_chip2_routed.png" alt="Chip 2 routed in Innovus"><figcaption><b>P&amp;R</b>Chip 2 routed: the hardwired chip uses visibly less of the same core.</figcaption></figure>
+    <figure><img src="figs/07_clock_tree.png" alt="Clock tree in the Innovus Clock Tree Debugger"><figcaption><b>CTS</b>The clock tree in the Clock Tree Debugger: every sink within 1.0 to 1.1 ns of the pad.</figcaption></figure>
+    <figure><img src="figs/08_ir_drop.png" alt="VDD IR-drop map over the layout"><figcaption><b>IR</b>VDD IR drop over the layout from Voltus, worst 47.9 mV.</figcaption></figure>
+    <figure><img src="figs/12_conformal_pass.png" alt="Conformal equivalence report, PASS"><figcaption><b>LEC</b>Conformal: every output and every flip-flop equivalent, PASS.</figcaption></figure>
+    <figure><img src="figs/09_final_layout_chip1.png" alt="Final layout of chip 1 with bond pads and dummy fill"><figcaption><b>GDS</b>The final layout with pad ring, bond pads and dummy fill, as sent to fabrication.</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">Signal analysis</p>
+  <h2>The interpolated QAM-64 waveform on the analyser</h2>
+  <p>The output stream is loaded into a Keysight 89600 vector signal analyser and demodulated. EVM measures how far each received symbol lands from its ideal constellation point; the replica level is how far the strongest remaining image sits below the signal. Both are read from the instrument, never computed.</p>
+  <div class="figs">
+    <figure><img src="img/vsa_constellation.jpg" alt="QAM-64 constellation with error vectors on the 89600 VSA"><figcaption><b>VSA</b>The QAM-64 constellation with its error vectors, 64 points resolved.</figcaption></figure>
+    <figure><img src="img/vsa_readout.jpg" alt="Demodulation readout with EVM, magnitude error, phase error and MER"><figcaption><b>EVM</b>The demodulation readout: EVM in m% rms, magnitude and phase error, MER, and the decoded symbol table.</figcaption></figure>
+    <figure class="wide"><img src="img/vsa_spectrum.jpg" alt="Spectrum of the interpolated signal on the 89600 VSA"><figcaption><b>VSA</b>The spectrum on the analyser: the QAM-64 band in the middle of the 234 MHz span, replicas below the floor.</figcaption></figure>
+    <figure class="wide"><img src="figs/10_vsa_evm.png" alt="Constellation, EVM readout and spectrum with the cleanup filter on"><figcaption><b>SPECTRUM</b>Constellation, readout and spectrum with the cleanup filter on: the replicas are gone and only the wanted band remains.</figcaption></figure>
+  </div>
+  <p class="muted" style="font-size:14.5px">The analyser pictures are from an earlier iteration of the same interpolator arithmetic; the chip results in the thesis come from the final designs.</p>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <span>Mohammad Khamaysi · Tel Aviv University</span>
+  <span><a href="mailto:khamaysi15@gmail.com">khamaysi15@gmail.com</a></span>
+</div></footer>
+
+</body>
+</html>

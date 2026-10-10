@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work · Mohammad Khamaysi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="name" href="index.html">Mohammad Khamaysi</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="work.html" aria-current="page">Work</a></li>
+    <li><a href="about.html">About me</a></li>
+    <li><a href="cv/Mohammad_Khamaysi_CV.pdf">CV</a></li>
+  </ul>
+</div></nav>
+
+<main class="wrap">
+<section>
+  <p class="eyebrow">Work · course projects</p>
+  <h1>Mixed-signal and analog IC design</h1>
+  <p class="lede">Transistor-level projects in Cadence Virtuoso from the M.Sc. courses, each carried from specification to characterisation.</p>
+</section>
+
+<div class="project">
+  <div>
+    <p class="course">Mixed-Signal Circuits · Virtuoso</p>
+    <h2>6-bit 2 GHz differential flash ADC</h2>
+    <p>A fully differential flash converter: a transmission-gate sampling network, a resistor ladder for the references, 63 high-speed comparators and a recursive encoder that turns the thermometer code into six bits.</p>
+    <p>Functional verification confirmed correct conversion across the full differential input range at multi-GHz sampling. The design was then characterised for linearity through DNL and INL, for dynamic performance through FFT-based SNDR and ENOB, and for power, with the trade-off between speed, accuracy and comparator count made explicit.</p>
+  </div>
+  <div class="gallery">
+    <figure class="wide"><img src="img/work/adc_1.png" alt="Top-level test bench of the flash ADC"><figcaption>Top-level test bench: differential sources, the reference ladder, the comparator bank, the encoder and the ideal DAC used to read the code back.</figcaption></figure>
+    <figure><img src="img/work/adc_2.png" alt="Clocked comparator and SR latch schematics"><figcaption>The clocked differential comparator (left) and the SR latch that holds its decision (right).</figcaption></figure>
+    <figure><img src="img/work/adc_3.png" alt="Transmission-gate sampling switch"><figcaption>The transmission-gate sampling switch with its hold capacitor.</figcaption></figure>
+    <figure><img src="img/work/adc_4.png" alt="Reconstructed output over the input sine with the digital code bus"><figcaption>The input sine (red) against the code reconstructed by the ideal DAC (yellow), with the 6-bit code bus underneath: 32, 46, 57, 63, 62 and back down.</figcaption></figure>
+    <figure><img src="img/work/adc_5.png" alt="Transient response: ramp input and the six output bits"><figcaption>Transient response of the converter: the input ramp and the six output bits.</figcaption></figure>
+  </div>
+</div>
+
+<div class="project">
+  <div>
+    <p class="course">Integrated Analog IC Design · Spectre</p>
+    <h2>Fully differential high-speed OTA</h2>
+    <p>From single-stage amplifiers for a Wi-Fi baseband and for low-power sensors up to a fully differential high-performance amplifier.</p>
+    <p>The advanced stages built a high-speed operational transconductance amplifier with small-signal and large-signal analysis, impedance evaluation and noise simulation, then added common-mode feedback, bias networks and compensation. The final amplifier was characterised for gain, bandwidth, CMRR, noise and dynamic range.</p>
+  </div>
+  <div class="gallery">
+    <figure class="wide"><img src="img/work/ota_3.png" alt="Single-stage amplifier with resistor bias and operating points"><figcaption>Single-stage amplifier with its bias network; every operating point annotated from the DC solution.</figcaption></figure>
+    <figure><img src="img/work/ota_1.png" alt="Fully differential two-stage amplifier with MIM compensation"><figcaption>The fully differential two-stage amplifier with MIM compensation capacitors and the common-mode feedback return.</figcaption></figure>
+    <figure><img src="img/work/ota_2.png" alt="Common-mode sensing circuit"><figcaption>The common-mode sensing circuit that compares the two outputs against the reference.</figcaption></figure>
+    <figure><img src="img/work/ota_4.png" alt="Two-stage single-ended amplifier"><figcaption>Two-stage single-ended amplifier: current-mirror first stage and a common-source output stage.</figcaption></figure>
+    <figure><img src="img/work/ota_5.png" alt="Miller-compensated OTA driving 10 pF"><figcaption>Miller-compensated two-stage OTA driving a 10 pF load.</figcaption></figure>
+  </div>
+</div>
+
+<div class="project">
+  <div>
+    <p class="course">Introduction to VLSI</p>
+    <h2>4-bit ALU through a full VLSI flow</h2>
+    <p>Logic, timing, area and power considered together from RTL to layout; the project that led to the full-chip flow of the thesis.</p>
+  </div>
+  <div></div>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <span>Mohammad Khamaysi · Tel Aviv University</span>
+  <span><a href="mailto:khamaysi15@gmail.com">khamaysi15@gmail.com</a></span>
+</div></footer>
+
+</body>
+</html>
